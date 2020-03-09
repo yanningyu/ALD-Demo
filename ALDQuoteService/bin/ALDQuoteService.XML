@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ALDQuoteService</name>
+    </assembly>
+    <members>
+        <member name="T:ALDQuoteService.Controllers.QuoteController">
+            <summary>
+            Controller for operations relating to Quotes
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.Controllers.QuoteController.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.Controllers.QuoteController.Get(ALDQuoteService.QuoteEngines.QuoteType,System.String,System.Int16,System.Decimal)">
+            <summary>
+            Calculates a quote for the supplied parameters
+            </summary>
+            <param name="quoteType">The type of finance requested</param>
+            <param name="vehicleRegistration">The VRM of the vehicle on which to quote</param>
+            <param name="termMonths">The term (in months) over which the vehicle will be financed</param>
+            <param name="deposit">The deposit amount to be paid at contract start</param>
+            <returns></returns>
+        </member>
+        <member name="T:ALDQuoteService.Models.Quote">
+            <summary>
+            Quote model for a finance contract
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.QuoteId">
+            <summary>
+            A unique identifier for this Quote
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.VehicleRetailPrice">
+            <summary>
+            The retail price of the vehicle
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.DepositAmount">
+            <summary>
+            The initial payment made at contract start
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.MonthlyPayment">
+            <summary>
+            The monthly payment amount
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.TotalAmountPayable">
+            <summary>
+            The total amount payable over the contract term
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.TotalInterestPayable">
+            <summary>
+            The total amount of interest payable over the contract term
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.Apr">
+            <summary>
+            Annual Percentage Rate (Interest Rate)
+            </summary>
+        </member>
+        <member name="P:ALDQuoteService.Models.Quote.FinalPayment">
+            <summary>
+            The payment amount required to end the contract at full term
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.PCPFinanceCalculator.GetTotalInterestPayable(System.Decimal,System.Decimal,System.Decimal,System.Int16)">
+            <summary>
+            
+            </summary>
+            <param name="vehiclePrice"></param>
+            <param name="deposit"></param>
+            <param name="apr"></param>
+            <param name="termMonths"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.PCPFinanceCalculator.GetFinalPayment(System.Decimal,System.Int16)">
+            <summary>
+            Calculates the final payment due at the end of the supplied contract term.
+            </summary>
+            <param name="vehiclePrice"></param>
+            <param name="termMonths"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.HPFinanceCalculator.GetAnnualPercentageRate(System.Int16)">
+            <summary>
+            Calculates the APR (interest rate) applicable to specified contract term.
+            </summary>
+            <param name="termMonths">The contract term in months</param>
+            <returns></returns>
+        </member>
+        <member name="T:ALDQuoteService.QuoteEngines.FinanceCalculatorBase">
+            <summary>
+            Base implementation of FinanceCalculator
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.FinanceCalculatorBase.GetAnnualPercentageRate(System.Int16)">
+            <summary>
+            Calculates the APR (interest rate) applicable to specified contract term.
+            </summary>
+            <param name="termMonths">The contract term in months</param>
+            <returns></returns>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.FinanceCalculatorBase.GetTotalInterestPayable(System.Decimal,System.Decimal,System.Decimal,System.Int16)">
+            <summary>
+            Calculates the total interest payable for the specified apr,
+            after deducting the deposit payment
+            </summary>
+            <param name="vehiclePrice">The retail price of the vehicle</param>
+            <param name="deposit">The initial payment made at contract start</param>
+            <param name="apr">The Annual Percentage Rate (interest rate)</param>
+            <param name="termMonths">The contract term in months</param>
+            <returns></returns>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.FinanceCalculatorBase.GetFinalPayment(System.Decimal,System.Int16)">
+            <summary>
+            Calculates the residual value of a vehicle after at the end of the supplied contract term.
+            </summary>
+            <param name="vehiclePrice">The retail price of the vehicle</param>
+            <param name="termMonths">The contract term in months</param>
+            <returns></returns>
+        </member>
+        <member name="P:ALDQuoteService.QuoteEngines.QuoteEngine.FinanceAmountCalculator">
+            <summary>
+            An implementation of FinanceCalculator appropriate to generating
+            quotes of a particular finance type
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.QuoteEngine.Calculate(System.Decimal,System.Int16,System.Decimal)">
+            <summary>
+            Calculates a new quote from the specified parameters
+            </summary>
+            <param name="vehiclePrice">The retail price of the vehicle</param>
+            <param name="termMonths">The retail price of the vehicle</param>
+            <param name="deposit">The deposit amount to be paid at contract start</param>
+            <returns></returns>
+        </member>
+        <member name="P:ALDQuoteService.QuoteEngines.IQuoteEngine.FinanceAmountCalculator">
+            <summary>
+            An implementation of FinanceCalculator appropriate to generating
+            quotes of a particular finance type
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.IQuoteEngine.Calculate(System.Decimal,System.Int16,System.Decimal)">
+            <summary>
+            Calculates a new quote from the specified parameters
+            </summary>
+            <param name="vehiclePrice">The retail price of the vehicle</param>
+            <param name="termMonths">The retail price of the vehicle</param>
+            <param name="deposit">The deposit amount to be paid at contract start</param>
+            <returns></returns>
+        </member>
+        <member name="T:ALDQuoteService.QuoteEngines.QuoteType">
+            <summary>
+            The type of Quote, pertaining to 
+            recognised finance contract types
+            </summary>
+        </member>
+        <member name="T:ALDQuoteService.QuoteEngines.QuoteEngineFactory">
+            <summary>
+            Creates quote engines for the purpose of calculating finance quotes
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.QuoteEngines.QuoteEngineFactory.Create(ALDQuoteService.QuoteEngines.QuoteType)">
+            <summary>
+            Creates an instance of <see cref="T:ALDQuoteService.QuoteEngines.IQuoteEngine"/> for the specified <see cref="T:ALDQuoteService.QuoteEngines.QuoteType"/>
+            </summary>
+            <param name="quoteType">The type of quote being requested <see cref="T:ALDQuoteService.QuoteEngines.QuoteType"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:ALDQuoteService.Services.IdGenerator">
+            <summary>
+            Utility class for generating unique identifiers
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.Services.IdGenerator.NewId">
+            <summary>
+            Generates a new unique identifier string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ALDQuoteService.Services.IMessage">
+            <summary>
+            Simple interface for an integration message which can be published
+            onto the message queue
+            </summary>
+        </member>
+        <member name="T:ALDQuoteService.Services.QuoteService">
+            <summary>
+            Service for calculating finance quotes
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.Services.QuoteService.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.Services.QuoteService.CalculateQuote(ALDQuoteService.QuoteEngines.QuoteType,System.Decimal,System.Int16,System.Decimal)">
+            <summary>
+            Calculates a finance quote of the requested type
+            </summary>
+            <param name="quoteType">The type of finance contract <see cref="T:ALDQuoteService.QuoteEngines.QuoteType"/></param>
+            <param name="vehiclePrice">The retail price of the vehicle</param>
+            <param name="termMonths">The contract term in months</param>
+            <param name="deposit">The initial payment made at contract start</param>
+            <returns>Quote model</returns>
+        </member>
+        <member name="T:ALDQuoteService.Services.MessageQueueService">
+            <summary>
+            Service for interacting with system message queue
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.Services.MessageQueueService.Publish(ALDQuoteService.Services.IMessage)">
+            <summary>
+            Publishes the supplied <see cref="T:ALDQuoteService.Services.IMessage"/> onto the message queue
+            </summary>
+            <param name="message"><see cref="T:ALDQuoteService.Services.IMessage"/> implementation</param>
+        </member>
+        <member name="T:ALDQuoteService.Services.VehicleService">
+            <summary>
+            Service for operations relating to the Vehicle entity
+            </summary>
+        </member>
+        <member name="M:ALDQuoteService.Services.VehicleService.GetRetailPrice(System.String)">
+            <summary>
+            Retrieves the retail price for the supplied vehicle registration 
+            </summary>
+            <param name="vehicleRegistration"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

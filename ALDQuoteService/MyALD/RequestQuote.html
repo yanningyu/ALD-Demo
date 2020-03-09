@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <script src="/MyALD/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+		<script src="/MyALD/myald.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="/MyALD/myald.css">
+    </head>
+    <body>
+		<div class="ald_logo"></div>
+		<hr/>
+		<h2>Request Finance Quote</h2>
+	
+        <div class="page">
+            <div class="panel left">
+                <table>
+                    <tr>
+                        <td>Quote Type</td>
+                        <td>
+                            <select id="quoteType" name="quoteType" required>
+                                <option value="0">Hire Purchase</option>
+                                <option value="1">Personal Contract Purchase</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Registration</td>
+                        <td><input id="vehicleRegistration" name="vehicleReg" placeholder="e.g. AB12 CDE" required /></td>
+                    </tr>
+                    <tr>
+                        <td>Contract Term</td>
+                        <td>
+                            <select id="termMonths" name="contractTerm" required>
+                                <option value="12">12 months</option>
+                                <option value="24">24 months</option>
+                                <option value="36">36 months</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Deposit Amount &#163;:</td>
+                        <td><input id="deposit" name="depositAmount" type="number" value="0" required /></td>
+                    </tr>
+                </table>
+
+                <input type="button" id="getQuote" value="Get Quote"></button>
+            </div>
+
+            <div class="panel right">
+                <h3>Your Quote:</h3>
+                <table>
+                    <tr>
+                        <td>Quote Id</td>
+                        <td><span id="quoteId" /></td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Retail Price</td>
+                        <td>&#163;<span id="quoteVehiclePrice" /></td>
+                    </tr>
+                    <tr>
+                        <td>Deposit</td>
+                        <td>&#163;<span id="quoteDeposit" /></td>
+                    </tr>
+                    <tr>
+                        <td>Interest Rate (APR)</td>
+                        <td><span id="quoteApr"></span>%</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Payment</td>
+                        <td>&#163;<span id="quoteMonthlyPayment" /></td>
+                    </tr>
+                    <tr>
+                        <td>Final Payment</td>
+                        <td>&#163;<span id="quoteFinalPayment" /></td>
+                    </tr>
+                    <tr>
+                        <td>Total Interest Payable</td>
+                        <td>&#163;<span id="quoteTotalInterest" /></td>
+                    </tr>
+                    <tr>
+                        <td>Total Payable</td>
+                        <td>&#163;<span id="quoteTotalPayable" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+		
+    </body>
+</html>
